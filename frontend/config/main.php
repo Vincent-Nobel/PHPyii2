@@ -16,7 +16,8 @@ return [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            //登录保存开启
+            'identityClass' =>\frontend\models\Member::className(),
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
@@ -36,14 +37,20 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        //开启
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        'sms'=>[
+          'class'=>\frontend\components\AliyunSms::className(),
+            'accessKeyId'=>'LTAIbhfIddssDJzp',
+            'accessKeySecret'=>'VpCPIp9sqtK5ZH20vvpImyT5isFnUP',
+            'signName'=>'超哥网站',
+            'templateCode'=>'SMS_80680008',
+        ],
     ],
     'params' => $params,
 ];
